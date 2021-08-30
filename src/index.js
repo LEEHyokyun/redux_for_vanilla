@@ -5,15 +5,17 @@ const add = document.getElementById("add")
 const minus = document.getElementById("minus")
 const number = document.querySelector("span")
 
+const ADD = "ADD"
+const MINUS = "MINUS"
+
 const reducer = (state = 0, action) => {
-  if(action.type === "ADD"){
-    state = state + 1
-  }
-  if(action.type === "MINUS"){
-    state = state - 1
+  switch(action.type){
+    case ADD : return state + 1
+    case MINUS : return state - 1
+    default : return state
   }
   //console.log(state)
-  return state
+  //return state
 }
 const countStore = createStore(reducer)
 

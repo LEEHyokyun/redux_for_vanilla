@@ -12,9 +12,25 @@ const reducer = (state = 0, action) => {
   if(action.type === "MINUS"){
     state = state - 1
   }
-  console.log(state)
+  //console.log(state)
   return state
 }
 const countStore = createStore(reducer)
 
-countStore.dispatch({type : "ADD"})
+const addHandler = () => {
+  countStore.dispatch({type:"ADD"})
+}
+
+add.addEventListener("click", addHandler)
+
+const minusHandler = () => {
+  countStore.dispatch({type:"MINUS"})
+}
+
+minus.addEventListener("click", minusHandler)
+
+const stateChanged = () => {
+  number.innerText = countStore.getState()
+}
+
+countStore.subscribe(stateChanged)

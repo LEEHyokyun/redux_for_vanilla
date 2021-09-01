@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
+import {connect} from 'react-redux'
 
-function Home() {
+function Home({doList}) {
+    //console.log(props)
     const [text, setText] = useState("")
     function onChange(e) {
         setText(e.target.value)
@@ -18,8 +20,14 @@ function Home() {
         <input type="text" value = {text} onChange={onChange}/>
         <button>LIST ADD</button>
         </form>
+        <ul>{JSON.stringify(doList)}</ul>
     </div>
     )
 }
 
-export default Home
+function mapStateToProps(state) {
+    //console.log(state, ownProps)
+    return {doList : state}
+}
+
+export default connect(mapStateToProps) (Home)

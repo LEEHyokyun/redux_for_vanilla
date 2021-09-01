@@ -7,10 +7,8 @@ import {actionTrigger} from '../store'
 function Dolistview({text, deleteFunc, id}){
     return(
         <li>
-            <Link to={`/${id}`}>
-            {text}
+            <Link to={`/${id}`}>{text}</Link>
             <button onClick={deleteFunc}>DELETE</button>
-            </Link>
         </li>
     )
 }

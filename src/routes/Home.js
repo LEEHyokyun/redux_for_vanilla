@@ -1,9 +1,8 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
+import {actionTrigger} from '../store'
 
-import addFunc from '../store'
-
-function Home({doList, dispatch}) {
+function Home({doList, addFunc}) {
     //console.log(props)
     const [text, setText] = useState("")
     function onChange(e) {
@@ -12,7 +11,7 @@ function Home({doList, dispatch}) {
 
     function onSubmit(e){
         e.preventDefault()
-         dispatch({type: "ADD", text: text, id : Date.now()})
+        addFunc(text) //call dispatch logic by specific function
         setText("")
     }
 
@@ -34,7 +33,10 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch){
-    return {dispatch}
+    return {
+        addFunc : (text) => dispatch(actionTrigger.addFunc(text))
+        //you can only use dispatch(action) structure, when you give dispatch with action aruguments.
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps) (Home)

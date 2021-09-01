@@ -3,7 +3,7 @@ import {createStore} from 'redux'
 const ADD = "ADD"
 const DELETE = "DELETE"
 
-export const addFunc = text => {
+const addFunc = text => {
     return {
         type : ADD,
         text : text,
@@ -11,7 +11,7 @@ export const addFunc = text => {
     }
 }
 
-export const deleteFunc = id => {
+const deleteFunc = id => {
     return {
         type : DELETE,
         id : Date.now()
@@ -31,4 +31,9 @@ const reducer = (state=[], action) => {
 
 const store = createStore(reducer)
 
-export default store 
+export default store
+
+export const actionTrigger = {
+    addFunc,
+    deleteFunc
+}

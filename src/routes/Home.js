@@ -1,7 +1,9 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
 
-function Home({doList}) {
+import addFunc from '../store'
+
+function Home({doList, dispatch}) {
     //console.log(props)
     const [text, setText] = useState("")
     function onChange(e) {
@@ -10,7 +12,8 @@ function Home({doList}) {
 
     function onSubmit(e){
         e.preventDefault()
-        console.log(text)
+         dispatch({type: "ADD", text: text, id : Date.now()})
+        setText("")
     }
 
     return(
@@ -30,4 +33,8 @@ function mapStateToProps(state) {
     return {doList : state}
 }
 
-export default connect(mapStateToProps) (Home)
+function mapDispatchToProps(dispatch){
+    return {dispatch}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (Home)

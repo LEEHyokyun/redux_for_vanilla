@@ -6,14 +6,15 @@ const DELETE = "DELETE"
 export const addFunc = text => {
     return {
         type : ADD,
-        text
+        text : text,
+        id : Date.now()
     }
 }
 
 export const deleteFunc = id => {
     return {
         type : DELETE,
-        id
+        id : Date.now()
     }
 }
 

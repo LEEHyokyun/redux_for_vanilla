@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
 import {actionTrigger} from '../store'
+import Dolistview from '../components/Dolistview'
 
 function Home({doList, addFunc}) {
     //console.log(props)
@@ -22,7 +23,7 @@ function Home({doList, addFunc}) {
         <input type="text" value = {text} onChange={onChange}/>
         <button>LIST ADD</button>
         </form>
-        <ul>{JSON.stringify(doList)}</ul>
+        <ul>{doList.map(doListToView => <Dolistview key={doListToView.id} {...doListToView} />)}</ul>
     </div>
     )
 }

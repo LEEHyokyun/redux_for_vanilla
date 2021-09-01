@@ -14,14 +14,14 @@ const addFunc = text => {
 const deleteFunc = id => {
     return {
         type : DELETE,
-        id : Date.now()
+        id : id
     }
 }
 
 const reducer = (state=[], action) => {
     switch(action.type){
         case ADD:
-            return [{text : action.text, id : action.id}, ...state]
+            return [...state, {text : action.text, id : action.id}]
         case DELETE:
             return state.filter(deletedList => deletedList.id !== action.id)
         default : 

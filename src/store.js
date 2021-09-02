@@ -1,23 +1,9 @@
 import {createStore} from 'redux'
-import { configureStore, createAction, createReducer } from '@reduxjs/toolkit'
+import { configureStore, createSlice } from '@reduxjs/toolkit'
 
+/*
 const addFunc = createAction("ADD")
 const deleteFunc = createAction("DELETE")
-
-//console.log(addFunc, deleteFunc)
-//console.log(addFunc(), deleteFunc())
-
-/*const reducer = (state=[], action) => {
-    switch(action.type){
-        case addFunc.type:
-            console.log(action)
-            return [...state, {text : action.payload, id : Date.now()}]
-        case deleteFunc.type:
-            return state.filter(deletedList => deletedList.id !== action.payload)
-        default : 
-            return state
-    }
-}*/
 
 const reducer = createReducer([], {
     [addFunc] : (state, action) => {
@@ -26,12 +12,27 @@ const reducer = createReducer([], {
     [deleteFunc] : (state, action) => state.filter(deletedList => deletedList.id !== action.payload)
     //return
 })
+*/
 
-const store = configureStore({reducer})
+const makeLists = createSlice({
+    name : 'makeLists',
+    initialState: [],
+    reducers: {
+        addFunc : (state, action) => {
+            state.push({text : action.payload, id : Date.now()})
+        },
+        
+        deleteFunc : (state, action) => state.filter(deletedList => deletedList.id !== action.payload)
+    }
+})
+
+const store = configureStore({reducer : makeLists.reducer})
+
+console.log(makeLists.actions)
 
 export default store
 
-export const actionTrigger = {
+export const {
     addFunc,
     deleteFunc
-}
+} = makeLists.actions

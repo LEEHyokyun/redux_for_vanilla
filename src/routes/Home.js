@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
-import {actionTrigger} from '../store'
+import {addFunc, deleteFunc} from '../store'
 import Dolistview from '../components/Dolistview'
 
 function Home({doList, addFunc}) {
@@ -35,7 +35,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch){
     return {
-        addFunc : (text) => dispatch(actionTrigger.addFunc(text))
+        addFunc : (text) => dispatch(addFunc(text))
         //you can only use dispatch(action) structure, when you give dispatch with action aruguments.
     }
 }

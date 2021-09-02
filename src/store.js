@@ -1,5 +1,5 @@
 import {createStore} from 'redux'
-import { createAction } from '@reduxjs/toolkit'
+import { createAction, createReducer } from '@reduxjs/toolkit'
 
 const addFunc = createAction("ADD")
 const deleteFunc = createAction("DELETE")
@@ -7,7 +7,7 @@ const deleteFunc = createAction("DELETE")
 //console.log(addFunc, deleteFunc)
 //console.log(addFunc(), deleteFunc())
 
-const reducer = (state=[], action) => {
+/*const reducer = (state=[], action) => {
     switch(action.type){
         case addFunc.type:
             console.log(action)
@@ -17,7 +17,15 @@ const reducer = (state=[], action) => {
         default : 
             return state
     }
-}
+}*/
+
+const reducer = createReducer([], {
+    [addFunc] : (state, action) => {
+        state.push({text : action.payload, id : Date.now()})
+    }, //no return
+    [deleteFunc] : (state, action) => state.filter(deletedList => deletedList.id !== action.payload)
+    //return
+})
 
 const store = createStore(reducer)
 

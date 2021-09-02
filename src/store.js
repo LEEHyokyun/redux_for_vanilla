@@ -1,5 +1,5 @@
 import {createStore} from 'redux'
-import { createAction, createReducer } from '@reduxjs/toolkit'
+import { configureStore, createAction, createReducer } from '@reduxjs/toolkit'
 
 const addFunc = createAction("ADD")
 const deleteFunc = createAction("DELETE")
@@ -27,7 +27,7 @@ const reducer = createReducer([], {
     //return
 })
 
-const store = createStore(reducer)
+const store = configureStore({reducer})
 
 export default store
 
